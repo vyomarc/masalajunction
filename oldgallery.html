@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Gallery - Masala Junction | Restaurant Photos & Ambiance</title>
+  <meta name="description" content="Explore the vibrant ambiance, delicious food, and happy moments at Masala Junction. See real photos of our restaurant in Barbigha.">
+  <meta name="keywords" content="Masala Junction gallery, restaurant photos Barbigha, food pictures, restaurant ambiance">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Gallery Specific Styles */
+    .gallery-filter {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    
+    .filter-btn {
+      padding: 0.75rem 1.5rem;
+      background: white;
+      border: 2px solid #DC2626;
+      color: #DC2626;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: #DC2626;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+    }
+    
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    .gallery-item {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+      background: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      animation: fadeInUp 0.5s ease;
+    }
+    
+    .gallery-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    }
+    
+    .gallery-item img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+    
+    .gallery-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      padding: 1.5rem;
+      color: white;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+    
+    .gallery-item:hover .gallery-overlay {
+      transform: translateY(0);
+    }
+    
+    .gallery-overlay h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.25rem;
+    }
+    
+    .gallery-overlay p {
+      font-size: 0.875rem;
+      opacity: 0.9;
+    }
+    
+    /* Lightbox Modal */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    .lightbox.active {
+      display: flex;
+    }
+    
+    .lightbox-content {
+      max-width: 90%;
+      max-height: 90%;
+      position: relative;
+    }
+    
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 12px;
+      animation: zoomIn 0.3s ease;
+    }
+    
+    .lightbox-caption {
+      position: absolute;
+      bottom: -50px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: white;
+      padding: 1rem;
+      background: rgba(0,0,0,0.7);
+      border-radius: 12px;
+    }
+    
+    .close-lightbox {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      transition: transform 0.2s;
+      z-index: 2001;
+    }
+    
+    .close-lightbox:hover {
+      transform: scale(1.1);
+      color: #DC2626;
+    }
+    
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      color: white;
+      padding: 1rem;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: all 0.2s;
+    }
+    
+    .lightbox-nav:hover {
+      background: #DC2626;
+      transform: translateY(-50%) scale(1.1);
+    }
+    
+    .prev-btn {
+      left: 20px;
+    }
+    
+    .next-btn {
+      right: 20px;
+    }
+    
+    @keyframes zoomIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    
+    .gallery-stats {
+      text-align: center;
+      margin: 2rem 0;
+      padding: 1rem;
+      background: linear-gradient(135deg, #FEF3C7, #FEE2E2);
+      border-radius: 16px;
+    }
+    
+    .gallery-stats i {
+      color: #DC2626;
+      margin-right: 0.5rem;
+    }
+    
+    /* Loading Animation */
+    .gallery-loading {
+      text-align: center;
+      padding: 3rem;
+    }
+    
+    .spinner {
+      border: 3px solid rgba(220, 38, 38, 0.1);
+      border-top-color: #DC2626;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 0.6s linear infinite;
+      margin: 0 auto;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    @media (max-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1rem;
+      }
+      
+      .gallery-item img {
+        height: 220px;
+      }
+      
+      .filter-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">Masala Junction</a>
+      <button class="menu-toggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="book-table.html">Book a Table</a>
+        <a href="order.html">Order Online</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container" style="margin: 2rem auto;">
+    <h1 class="section-title">Our Restaurant Gallery</h1>
+    <p style="text-align: center; margin-bottom: 2rem;">Experience the vibrant ambiance, delicious food, and happy moments at Masala Junction</p>
+    
+    <!-- Gallery Stats -->
+    <div class="gallery-stats">
+      <i class="fas fa-camera"></i> Explore our moments |
+      <i class="fas fa-utensils"></i> 50+ Dishes Served Daily |
+      <i class="fas fa-users"></i> 1000+ Happy Customers
+    </div>
+    
+    <!-- Filter Buttons -->
+    <div class="gallery-filter">
+      <button class="filter-btn active" data-filter="all">All Photos</button>
+      <button class="filter-btn" data-filter="ambiance">Ambiance & Interior</button>
+      <button class="filter-btn" data-filter="food">Delicious Food</button>
+      <button class="filter-btn" data-filter="events">Happy Moments</button>
+    </div>
+    
+    <!-- Gallery Grid -->
+    <div id="galleryGrid" class="gallery-grid">
+      <!-- Images will be loaded dynamically -->
+      <div class="gallery-loading">
+        <div class="spinner"></div>
+        <p style="margin-top: 1rem;">Loading gallery...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="lightbox">
+    <span class="close-lightbox">&times;</span>
+    <div class="lightbox-nav prev-btn">
+      <i class="fas fa-chevron-left"></i>
+    </div>
+    <div class="lightbox-content">
+      <img id="lightboxImg" class="lightbox-img" src="" alt="">
+      <div id="lightboxCaption" class="lightbox-caption"></div>
+    </div>
+    <div class="lightbox-nav next-btn">
+      <i class="fas fa-chevron-right"></i>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Masala Junction</h3>
+          <p>Best hangout food spot in Barbigha</p>
+          <p><i class="fas fa-map-marker-alt"></i> Near Bharat Petroleum, Hatiya More, Barbigha</p>
+          <p><i class="fas fa-phone"></i> +91 91234 56789</p>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <a href="menu.html">Menu</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="book-table.html">Book a Table</a>
+          <a href="order.html">Order Online</a>
+          <a href="reviews.html">Reviews</a>
+        </div>
+        <div class="footer-section">
+          <h3>Opening Hours</h3>
+          <p>Monday - Sunday: 11:00 AM - 10:30 PM</p>
+          <p>All days open</p>
+          <div style="margin-top: 1rem;">
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-facebook" style="margin-left: 1rem;"></i>
+            <i class="fab fa-twitter" style="margin-left: 1rem;"></i>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Masala Junction. All rights reserved. | Designed with <i class="fas fa-heart" style="color: #DC2626;"></i> for Barbigha</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Sticky Bottom Bar -->
+  <div class="sticky-bottom-bar">
+    <a href="tel:+918252702699" class="call-btn call-track">
+      <i class="fas fa-phone-alt fa-lg"></i>
+      <span>Call</span>
+    </a>
+    <a href="https://wa.me/918252702699?text=Hi%20Masala%20Junction!%20I%20saw%20your%20gallery%20and%20want%20to%20visit%20or%20order" target="_blank" class="whatsapp-btn whatsapp-track">
+      <i class="fab fa-whatsapp fa-lg"></i>
+      <span>WhatsApp</span>
+    </a>
+    <a href="https://maps.google.com/?q=Masala+Junction+Barbigha" target="_blank" class="directions-btn direction-track">
+      <i class="fas fa-location-dot fa-lg"></i>
+      <span>Directions</span>
+    </a>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Gallery Data - Realistic restaurant images using high-quality placeholders
+    // In production, replace these with actual restaurant photos
+    const galleryData = [
+      // Ambiance & Interior (5 images)
+      {
+        id: 1,
+        category: "ambiance",
+        title: "Cozy Dining Area",
+        description: "Warm and inviting atmosphere perfect for family gatherings",
+        image: "https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?auto=compress&cs=tinysrgb&w=600",
+        thumbnail: "https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?auto=compress&cs=tinysrgb&w=400"
+      },
+      {
+        id: 2,
+        category: "ambiance",
+        title: "Modern Interior",
+        description: "Contemporary design with comfortable seating",
+        image: "https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=600",
+        thumbnail: "https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=400"
+      },
+      {
+        id: 3,
+        category: "ambiance",
+        title: "Vibrant Wall Decor",
+        description: "Artistic elements that create a unique dining experience",
+        image: "https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?auto=compress&cs=tinysrgb&w=600",
+        thumbnail: "https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?auto=compress&cs=tinysrgb&w=400"
+      },
+      {
+        id: 4,
+        category: "ambiance",
+        title: "Outdoor Seating",
+        description: "Enjoy your meal in our open-air section",
+        image: "https://images.pexels.com/photos/6267/menu-restaurant-vintage-table.jpg?auto=compress&cs=tinysrgb&w=600",
+        thumbnail: "https://images.pexels.com/photos/6267/menu-restaurant-vintage-table.jpg?auto=compress&cs=tinysrgb&w=400"
+      },
+      {
+        id: 5,
+        category: "ambiance",
+        title: "Cozy Corner",
+        description: "Perfect spot for intimate dinners",
+        image: "https://images.pexels.com/photos/67468/pexels-photo-67468.jpeg?auto=compress&cs=tinysrgb&w=600",
+        thumbnail: "https://images.pexels.com/photos/67468/pexels-photo-67468.jpeg?auto=compress&cs=tinysrgb&w=400"
+      },
+      
+      // Food Images (8 images)
+      {
+        id: 6,
+        category: "food",
+        title: "Chicken Lollipop",
+        description: "Our signature starter - crispy and spicy",
+        image: "https://images.pexels.com/photos/10634398/pexels-photo-10634398.jpeg?auto=compress&cs=tinysrgb&w=600",
+        thumbnail: "https://images.pexels.com/photos/10634398/pexels-photo-10634398.jpeg?auto=compress&cs=tinysrgb&w=400"
+      },
+      {
+        id: 7,
+        category: "food",
+        title: "Paneer Chilli",
+        description: "Cottage cheese tossed in spicy sauce",
+        image: "https://images.pexels.com/photos/699953/pexels-photo-699953.jpeg?auto=compress&cs=tinysrgb&w=600",
+        thumbnail: "https://images.pexels.com/photos/699953/pexels-photo-699953.jpeg?auto=compress&cs=tinysrgb&w=400"
+      },
+      {
+        id: 8,
+        category: "food",
+        title: "Honey Chilli Potato",
+        description: "Sweet and spicy crispy potato fries",
+        image: "https://images.pexels.com/photos/1583884/pexels-photo-1583884.jpeg?auto=compress&cs=tinysrgb&w=600",
+        thumbnail: "https://images.pexels.com/photos/1583884/pexels-photo-1583884.jpeg?auto=compress&cs=tinysrgb&w=400"
+      },
+      {
+        id: 9,
+        category: "food",
+        title: "Veg Momos",
+        description: "Steamed dumplings with spicy chutney",
+        image: "https://images.pexels.com/photos/6210896/pexels-photo-6210896.jpeg?auto=compress&cs=tinysrgb&w=600",
+        thumbnail: "https://images.pexels.com/photos/6210896/pexels-photo-6210896.jpeg?auto=compress&cs=tinysrgb&w=400"
+      },
+      {
+        id: 10,
+        category: "food",
+        title: "Crispy Chicken",
+        description: "Golden fried chicken with secret spices",
+        image: "https://images.pexels.com/photos/6064913/pexels-photo-6064913.jpeg?auto=compress&cs=tinysrgb&w=600",
+        thumbnail: "https://images.pexels.com/photos/6064913/pexels-photo-6064913.jpeg?auto=compress&cs=tinysrgb&w=400"
+      },
+      {
+        id: 11,
+        category: "food",
+        title: "Spring Rolls",
+        description: "Crispy vegetable rolls with sweet chili sauce",
+        image: "https://images.pexels.com/photos/2338429/pexels-photo-2338429.jpeg?auto=compress&cs=tinysrgb&w=600",
+        thumbnail: "https://images.pexels.com/photos/2338429/pexels-photo-2338429.jpeg?auto=compress&cs=tinysrgb&w=400"
+      },
+      {
+        id: 12,
+        category: "food",
+        title: "Chicken Manchurian",
+        description: "Indo-Chinese favorite with gravy",
+        image: "https://images.pexels.com/photos/2679501/pexels-photo-2679501.jpeg?auto=compress&cs=tinysrgb&w=600",
+        thumbnail: "https://images.pexels.com/photos/2679501/pexels-photo-2679501.jpeg?auto=compress&cs=tinysrgb&w=400"
+      },
+      {
+        id: 13,
+        category: "food",
+        title: "Masala Junction Special Platter",
+        description: "Combination of our best starters",
+        image: "https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=600",
+        thumbnail: "https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=400"
+      },
+      
+      // Events & Happy Moments (5 images)
+      {
+        id: 14,
+        category: "events",
+        title: "Birthday Celebration",
+        description: "Happy customers celebrating special moments with us",
+        image: "https://images.pexels.com/photos/2608516/pexels-photo-2608516.jpeg?auto=compress&cs=tinysrgb&w=600",
+        thumbnail: "https://images.pexels.com/photos/2608516/pexels-photo-2608516.jpeg?auto=compress&cs=tinysrgb&w=400"
+      },
+      {
+        id: 15,
+        category: "events",
+        title: "Family Dinner",
+        description: "Creating memories with loved ones",
+        image: "https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=600",
+        thumbnail: "https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=400"
+      },
+      {
+        id: 16,
+        category: "events",
+        title: "Friends Hangout",
+        description: "The perfect spot for friends to chill and eat",
+        image: "https://images.pexels.com/photos/3184192/pexels-photo-3184192.jpeg?auto=compress&cs=tinysrgb&w=600",
+        thumbnail: "https://images.pexels.com/photos/3184192/pexels-photo-3184192.jpeg?auto=compress&cs=tinysrgb&w=400"
+      },
+      {
+        id: 17,
+        category: "events",
+        title: "Food Fest",
+        description: "Special events and food festivals at Masala Junction",
+        image: "https://images.pexels.com/photos/2608517/pexels-photo-2608517.jpeg?auto=compress&cs=tinysrgb&w=600",
+        thumbnail: "https://images.pexels.com/photos/2608517/pexels-photo-2608517.jpeg?auto=compress&cs=tinysrgb&w=400"
+      },
+      {
+        id: 18,
+        category: "events",
+        title: "Happy Customer",
+        description: "Satisfied guests enjoying our hospitality",
+        image: "https://images.pexels.com/photos/3171558/pexels-photo-3171558.jpeg?auto=compress&cs=tinysrgb&w=600",
+        thumbnail: "https://images.pexels.com/photos/3171558/pexels-photo-3171558.jpeg?auto=compress&cs=tinysrgb&w=400"
+      }
+    ];
+
+    let currentGalleryItems = [...galleryData];
+    let currentLightboxIndex = 0;
+
+    // Render Gallery
+    function renderGallery(items) {
+      const galleryGrid = document.getElementById('galleryGrid');
+      
+      if (!items || items.length === 0) {
+        galleryGrid.innerHTML = '<div class="gallery-loading"><p style="text-align: center;">No images found in this category.</p></div>';
+        return;
+      }
+      
+      galleryGrid.innerHTML = items.map((item, index) => `
+        <div class="gallery-item" data-id="${item.id}" data-category="${item.category}" data-index="${index}">
+          <img data-src="${item.thumbnail}" src="${item.thumbnail}" alt="${item.title}" loading="lazy">
+          <div class="gallery-overlay">
+            <h3>${item.title}</h3>
+            <p>${item.description}</p>
+          </div>
+        </div>
+      `).join('');
+      
+      // Add click event to gallery items
+      document.querySelectorAll('.gallery-item').forEach((item, idx) => {
+        item.addEventListener('click', () => {
+          const itemId = parseInt(item.dataset.id);
+          const originalIndex = currentGalleryItems.findIndex(i => i.id === itemId);
+          openLightbox(originalIndex);
+        });
+      });
+    }
+
+    // Filter Gallery
+    function filterGallery(category) {
+      if (category === 'all') {
+        currentGalleryItems = [...galleryData];
+      } else {
+        currentGalleryItems = galleryData.filter(item => item.category === category);
+      }
+      renderGallery(currentGalleryItems);
+    }
+
+    // Lightbox Functions
+    function openLightbox(index) {
+      currentLightboxIndex = index;
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightboxImg');
+      const lightboxCaption = document.getElementById('lightboxCaption');
+      
+      if (currentGalleryItems[index]) {
+        lightboxImg.src = currentGalleryItems[index].image;
+        lightboxCaption.innerHTML = `<strong>${currentGalleryItems[index].title}</strong><br>${currentGalleryItems[index].description}`;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+        // Track gallery view
+        if (window.MasalaJunction) {
+          window.MasalaJunction.trackEvent('gallery_view', currentGalleryItems[index].title);
+        }
+      }
+    }
+    
+    function closeLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      lightbox.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+    
+    function nextImage() {
+      if (currentLightboxIndex < currentGalleryItems.length - 1) {
+        openLightbox(currentLightboxIndex + 1);
+      } else {
+        openLightbox(0);
+      }
+    }
+    
+    function prevImage() {
+      if (currentLightboxIndex > 0) {
+        openLightbox(currentLightboxIndex - 1);
+      } else {
+        openLightbox(currentGalleryItems.length - 1);
+      }
+    }
+    
+    // Initialize Gallery
+    document.addEventListener('DOMContentLoaded', () => {
+      renderGallery(galleryData);
+      
+      // Filter buttons
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const category = btn.dataset.filter;
+          filterGallery(category);
+        });
+      });
+      
+      // Lightbox controls
+      const lightbox = document.getElementById('lightbox');
+      const closeBtn = document.querySelector('.close-lightbox');
+      const prevBtn = document.querySelector('.prev-btn');
+      const nextBtn = document.querySelector('.next-btn');
+      
+      if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+      if (prevBtn) prevBtn.addEventListener('click', prevImage);
+      if (nextBtn) nextBtn.addEventListener('click', nextImage);
+      
+      // Close on background click
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+          closeLightbox();
+        }
+      });
+      
+      // Keyboard navigation
+      document.addEventListener('keydown', (e) => {
+        if (lightbox.classList.contains('active')) {
+          if (e.key === 'ArrowLeft') prevImage();
+          if (e.key === 'ArrowRight') nextImage();
+          if (e.key === 'Escape') closeLightbox();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

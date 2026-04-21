@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Contact Us - Masala Junction</title>
+  <meta name="description" content="Best hangout food spot in Barbigha. Enjoy Chicken Lollipop, Paneer Chilli & more. Rated 4.2★. Call now for delivery or table booking!">
+  <meta name="keywords" content="best restaurant in Barbigha, chicken starter Barbigha, Masala Junction, hangout spot">
+  
+  <!-- Favicon - Replace the href with your logo path -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="assets/favicon/site.webmanifest">
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Additional navbar styling to match hero section */
+    .navbar {
+      background: linear-gradient(135deg, #DC2626, #1F2937) !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .logo {
+      font-family: 'Playfair Display', serif !important;
+      font-size: 1.8rem !important;
+      font-weight: 800 !important;
+      background: linear-gradient(135deg, #F59E0B, #FBBF24) !important;
+      -webkit-background-clip: text !important;
+      background-clip: text !important;
+      color: transparent !important;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      letter-spacing: 1px;
+      position: relative;
+    }
+    
+    .logo::after {
+      content: '🍽️';
+      font-size: 1.2rem;
+      position: absolute;
+      top: -5px;
+      right: -25px;
+      opacity: 0.8;
+    }
+    
+    /* Restaurant type tagline under logo */
+    .restaurant-type {
+      display: flex;
+      gap: 0.5rem;
+      margin-left: 0.5rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #F59E0B;
+      letter-spacing: 1px;
+    }
+    
+    .restaurant-type span {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 0.2rem 0.5rem;
+      border-radius: 20px;
+      backdrop-filter: blur(5px);
+    }
+    
+    @media (max-width: 768px) {
+      .logo {
+        font-size: 1.3rem !important;
+      }
+      
+      .logo::after {
+        font-size: 0.9rem;
+        right: -20px;
+      }
+      
+      .restaurant-type {
+        display: none;
+      }
+    }
+    
+    /* Update nav links color for better contrast */
+    .nav-links a {
+      color: white !important;
+      font-weight: 600;
+    }
+    
+    .nav-links a:hover {
+      color: #F59E0B !important;
+    }
+    
+    .nav-links a.active {
+      color: #F59E0B !important;
+    }
+    
+    .nav-links a::after {
+      background: #F59E0B !important;
+    }
+    
+    /* Mobile menu background */
+    @media (max-width: 768px) {
+      .nav-links {
+        background: linear-gradient(135deg, #DC2626, #1F2937) !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div>
+        <a href="index.html" class="logo">Masala Junction</a>
+        <div class="restaurant-type">
+          <span>INDIAN</span>
+          <span>CHINESE</span>
+          <span>TANDOOR</span>
+        </div>
+      </div>
+      <button class="menu-toggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="book-table.html">Book a Table</a>
+        <a href="order.html">Order Online</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container" style="margin: 3rem auto;">
+    <h1 class="section-title">Get in Touch</h1>
+    
+    <div class="grid-2">
+      <div>
+        <div style="background: white; border-radius: 24px; padding: 2rem;">
+          <h3 style="color: #DC2626; margin-bottom: 1rem;">Contact Information</h3>
+          <p><i class="fas fa-phone-alt" style="color: #DC2626;"></i> <a href="tel:+919123456789" class="call-track">+91 91234 56789</a></p>
+          <p><i class="fab fa-whatsapp" style="color: #25D366;"></i> <a href="https://wa.me/918252702699" target="_blank" class="whatsapp-track">+91 91234 56789</a></p>
+          <p><i class="fas fa-map-marker-alt" style="color: #DC2626;"></i> Near Bharat Petroleum, Hatiya More, Barbigha Sheikhpura, 811101</p>
+          <p><i class="fas fa-clock" style="color: #DC2626;"></i> Opening Hours: 11:00 AM - 10:30 PM (All days)</p>
+          
+          <div style="margin-top: 2rem;">
+            <a href="tel:+919123456789" class="btn btn-primary call-track" style="margin-right: 1rem;">Call Now</a>
+            <a href="https://wa.me/918252702699" target="_blank" class="btn btn-secondary whatsapp-track">WhatsApp Us</a>
+          </div>
+        </div>
+      </div>
+      
+      <div>
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Masala Junction</h3>
+          <p>Best hangout food spot in Barbigha</p>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <a href="menu.html">Menu</a>
+          <a href="book-table.html">Book a Table</a>
+          <a href="order.html">Order Online</a>
+        </div>
+        <div class="footer-section">
+          <h3>Opening Hours</h3>
+          <p>11:00 AM - 10:30 PM</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Masala Junction. All rights reserved. | Developed by <a href="https://vyomarctech.com" target="_blank" rel="noopener noreferrer">VYOMARC Technologies</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="sticky-bottom-bar">
+    <a href="tel:+919123456789" class="call-btn call-track"><i class="fas fa-phone-alt"></i><span>Call</span></a>
+    <a href="https://wa.me/919123456789" target="_blank" class="whatsapp-btn whatsapp-track"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a>
+    <a href="https://www.google.com/maps/dir/?api=1&destination=25.2110818,85.738188" target="_blank" class="directions-btn direction-track"><i class="fas fa-location-dot"></i><span>Directions</span></a>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu - Masala Junction</title>
+  <meta name="description" content="Explore our delicious veg and chicken starters. Best chicken lollipop, paneer chilli, and more in Barbigha.">
+  <!-- Favicon - Replace the href with your logo path -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="assets/favicon/site.webmanifest">
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Additional navbar styling to match hero section */
+    .navbar {
+      background: linear-gradient(135deg, #DC2626, #1F2937) !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .logo {
+      font-family: 'Playfair Display', serif !important;
+      font-size: 1.8rem !important;
+      font-weight: 800 !important;
+      background: linear-gradient(135deg, #F59E0B, #FBBF24) !important;
+      -webkit-background-clip: text !important;
+      background-clip: text !important;
+      color: transparent !important;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      letter-spacing: 1px;
+      position: relative;
+    }
+    
+    .logo::after {
+      content: '🍽️';
+      font-size: 1.2rem;
+      position: absolute;
+      top: -5px;
+      right: -25px;
+      opacity: 0.8;
+    }
+    
+    /* Restaurant type tagline under logo */
+    .restaurant-type {
+      display: flex;
+      gap: 0.5rem;
+      margin-left: 0.5rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #F59E0B;
+      letter-spacing: 1px;
+    }
+    
+    .restaurant-type span {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 0.2rem 0.5rem;
+      border-radius: 20px;
+      backdrop-filter: blur(5px);
+    }
+    
+    @media (max-width: 768px) {
+      .logo {
+        font-size: 1.3rem !important;
+      }
+      
+      .logo::after {
+        font-size: 0.9rem;
+        right: -20px;
+      }
+      
+      .restaurant-type {
+        display: none;
+      }
+    }
+    
+    /* Update nav links color for better contrast */
+    .nav-links a {
+      color: white !important;
+      font-weight: 600;
+    }
+    
+    .nav-links a:hover {
+      color: #F59E0B !important;
+    }
+    
+    .nav-links a.active {
+      color: #F59E0B !important;
+    }
+    
+    .nav-links a::after {
+      background: #F59E0B !important;
+    }
+    
+    /* Mobile menu background */
+    @media (max-width: 768px) {
+      .nav-links {
+        background: linear-gradient(135deg, #DC2626, #1F2937) !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div>
+        <a href="index.html" class="logo">Masala Junction</a>
+        <div class="restaurant-type">
+          <span>INDIAN</span>
+          <span>CHINESE</span>
+          <span>TANDOOR</span>
+        </div>
+      </div>
+      <button class="menu-toggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="book-table.html">Book a Table</a>
+        <a href="order.html">Order Online</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container" style="margin-top: 2rem;">
+    <h1 class="section-title">Our Special Starters Menu</h1>
+    
+    <div id="veg" style="scroll-margin-top: 100px;">
+      <h2 style="color: #DC2626; margin: 2rem 0 1rem;"><i class="fas fa-leaf"></i> Veg Starters</h2>
+      <div style="background: #FEF3C7; border-radius: 20px; padding: 1.5rem;">
+        <div style="display: grid; gap: 1rem;">
+          <div style="display: flex; justify-content: space-between; padding: 0.75rem; background: white; border-radius: 12px;">
+            <span><strong>Veg Momo</strong> <span style="background: #DC2626; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; margin-left: 8px;">Popular</span></span>
+            <span style="color: #DC2626; font-weight: bold;">₹100</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; padding: 0.75rem; background: white; border-radius: 12px;">
+            <span><strong>Paneer Chilli</strong> <span style="background: #F59E0B; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem;">Best Seller</span></span>
+            <span style="color: #DC2626; font-weight: bold;">₹225</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; padding: 0.75rem; background: white; border-radius: 12px;">
+            <span><strong>Paneer Schezwan</strong></span>
+            <span style="color: #DC2626; font-weight: bold;">₹225</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; padding: 0.75rem; background: white; border-radius: 12px;">
+            <span><strong>Baby Corn</strong></span>
+            <span style="color: #DC2626; font-weight: bold;">₹225</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; padding: 0.75rem; background: white; border-radius: 12px;">
+            <span><strong>Mushroom Chilly</strong></span>
+            <span style="color: #DC2626; font-weight: bold;">₹225</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; padding: 0.75rem; background: white; border-radius: 12px;">
+            <span><strong>Veg Manchurian</strong></span>
+            <span style="color: #DC2626; font-weight: bold;">₹200</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; padding: 0.75rem; background: white; border-radius: 12px;">
+            <span><strong>Honey Chilli Potato</strong> <span style="background: #F59E0B; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem;">Best Seller</span></span>
+            <span style="color: #DC2626; font-weight: bold;">₹175</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; padding: 0.75rem; background: white; border-radius: 12px;">
+            <span><strong>Spring Roll</strong></span>
+            <span style="color: #DC2626; font-weight: bold;">₹175</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="chicken" style="scroll-margin-top: 100px;">
+      <h2 style="color: #DC2626; margin: 2rem 0 1rem;"><i class="fas fa-drumstick-bite"></i> Chicken Starters</h2>
+      <div style="background: #FEF3C7; border-radius: 20px; padding: 1.5rem;">
+        <div style="display: grid; gap: 1rem;">
+          <div style="display: flex; justify-content: space-between; padding: 0.75rem; background: white; border-radius: 12px;">
+            <span><strong>Chicken Lollipop</strong> <span style="background: #F59E0B; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem;">Best Seller</span></span>
+            <span style="color: #DC2626; font-weight: bold;">₹225</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; padding: 0.75rem; background: white; border-radius: 12px;">
+            <span><strong>Crispy Chicken</strong></span>
+            <span style="color: #DC2626; font-weight: bold;">₹275</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; padding: 0.75rem; background: white; border-radius: 12px;">
+            <span><strong>Chicken Chilly</strong> <span style="background: #F59E0B; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem;">Best Seller</span></span>
+            <span style="color: #DC2626; font-weight: bold;">₹275</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; padding: 0.75rem; background: white; border-radius: 12px;">
+            <span><strong>Chicken Salt & Pepper</strong></span>
+            <span style="color: #DC2626; font-weight: bold;">₹325</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; padding: 0.75rem; background: white; border-radius: 12px;">
+            <span><strong>Chicken Manchurian</strong></span>
+            <span style="color: #DC2626; font-weight: bold;">₹275</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin: 3rem 0;">
+      <a href="order.html" class="btn btn-primary">Order Online Now</a>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Masala Junction</h3>
+          <p>Best hangout food spot in Barbigha</p>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <a href="menu.html">Menu</a>
+          <a href="book-table.html">Book a Table</a>
+          <a href="order.html">Order Online</a>
+        </div>
+        <div class="footer-section">
+          <h3>Opening Hours</h3>
+          <p>11:00 AM - 10:30 PM</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Masala Junction. All rights reserved. | Developed by <a href="https://vyomarc.com" target="_blank" rel="noopener noreferrer">VYOMARC Technologies</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="sticky-bottom-bar">
+    <a href="tel:+919123456789" class="call-btn call-track"><i class="fas fa-phone-alt"></i><span>Call</span></a>
+    <a href="https://wa.me/919123456789" target="_blank" class="whatsapp-btn whatsapp-track"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a>
+    <a href="https://maps.google.com/?q=Masala+Junction+Barbigha" target="_blank" class="directions-btn direction-track"><i class="fas fa-location-dot"></i><span>Directions</span></a>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Reviews - Masala Junction</title>
+    <!-- Favicon - Replace the href with your logo path -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="assets/favicon/site.webmanifest">
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Additional navbar styling to match hero section */
+    .navbar {
+      background: linear-gradient(135deg, #DC2626, #1F2937) !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .logo {
+      font-family: 'Playfair Display', serif !important;
+      font-size: 1.8rem !important;
+      font-weight: 800 !important;
+      background: linear-gradient(135deg, #F59E0B, #FBBF24) !important;
+      -webkit-background-clip: text !important;
+      background-clip: text !important;
+      color: transparent !important;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      letter-spacing: 1px;
+      position: relative;
+    }
+    
+    .logo::after {
+      content: '🍽️';
+      font-size: 1.2rem;
+      position: absolute;
+      top: -5px;
+      right: -25px;
+      opacity: 0.8;
+    }
+    
+    /* Restaurant type tagline under logo */
+    .restaurant-type {
+      display: flex;
+      gap: 0.5rem;
+      margin-left: 0.5rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #F59E0B;
+      letter-spacing: 1px;
+    }
+    
+    .restaurant-type span {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 0.2rem 0.5rem;
+      border-radius: 20px;
+      backdrop-filter: blur(5px);
+    }
+    
+    @media (max-width: 768px) {
+      .logo {
+        font-size: 1.3rem !important;
+      }
+      
+      .logo::after {
+        font-size: 0.9rem;
+        right: -20px;
+      }
+      
+      .restaurant-type {
+        display: none;
+      }
+    }
+    
+    /* Update nav links color for better contrast */
+    .nav-links a {
+      color: white !important;
+      font-weight: 600;
+    }
+    
+    .nav-links a:hover {
+      color: #F59E0B !important;
+    }
+    
+    .nav-links a.active {
+      color: #F59E0B !important;
+    }
+    
+    .nav-links a::after {
+      background: #F59E0B !important;
+    }
+    
+    /* Mobile menu background */
+    @media (max-width: 768px) {
+      .nav-links {
+        background: linear-gradient(135deg, #DC2626, #1F2937) !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div>
+        <a href="index.html" class="logo">Masala Junction</a>
+        <div class="restaurant-type">
+          <span>INDIAN</span>
+          <span>CHINESE</span>
+          <span>TANDOOR</span>
+        </div>
+      </div>
+      <button class="menu-toggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="book-table.html">Book a Table</a>
+        <a href="order.html">Order Online</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+  <div class="container" style="margin: 3rem auto;">
+    <h1 class="section-title">What Our Customers Say</h1>
+    <div style="text-align: center; margin-bottom: 2rem;">
+      <div class="star-rating" style="font-size: 2rem;">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star-half-alt"></i>
+      </div>
+      <p style="font-size: 1.25rem;"><strong>4.2 out of 5</strong> - Based on 87 reviews</p>
+    </div>
+    
+    <div class="grid-2">
+      <div class="review-card" style="padding: 1.5rem;">
+        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+          <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Monika" style="width: 60px; height: 60px; border-radius: 50%;">
+          <div>
+            <h3>Monika Singh</h3>
+            <div class="star-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          </div>
+        </div>
+        <p>"Very delicious and good staff service. If you want to try chicken starter - chicken fry is extremely delicious!"</p>
+        <div style="margin-top: 1rem; font-size: 0.875rem; color: #6B7280;">
+          Food: 5/5 | Service: 5/5 | Atmosphere: 5/5
+        </div>
+      </div>
+      
+      <div class="review-card" style="padding: 1.5rem;">
+        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Niraj" style="width: 60px; height: 60px; border-radius: 50%;">
+          <div>
+            <h3>Rishi raj</h3>
+            <div class="star-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          </div>
+        </div>
+        <p>"Best services and best food. Nice behaviour and amazing ambiance. Highly recommend the Paneer Chilli!"</p>
+        <div style="margin-top: 1rem; font-size: 0.875rem; color: #6B7280;">
+          Food: 5/5 | Service: 5/5 | Atmosphere: 5/5
+        </div>
+      </div>
+      
+      <div class="review-card" style="padding: 1.5rem;">
+        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+          <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Madhavi" style="width: 60px; height: 60px; border-radius: 50%;">
+          <div>
+            <h3>Madhavi Sharma</h3>
+            <div class="star-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+          </div>
+        </div>
+        <p>"Chicken Lollipop is to die for! However, wait time on weekends can be a bit longer, but totally worth it. Great hangout spot for friends."</p>
+        <div style="margin-top: 1rem; font-size: 0.875rem; color: #6B7280;">
+          Food: 5/5 | Service: 4/5 | Atmosphere: 5/5
+        </div>
+      </div>
+      
+      <div class="review-card" style="padding: 1.5rem;">
+        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+          <img src="https://randomuser.me/api/portraits/women/75.jpg" alt="Ritika" style="width: 60px; height: 60px; border-radius: 50%;">
+          <div>
+            <h3>Ritika</h3>
+            <div class="star-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          </div>
+        </div>
+        <p>"Absolutely love the vibe! Honey Chilli Potato is legendary. Must-visit spot in Barbigha for students and families."</p>
+        <div style="margin-top: 1rem; font-size: 0.875rem; color: #6B7280;">
+          Food: 5/5 | Service: 5/5 | Atmosphere: 5/5
+        </div>
+      </div>
+      
+      <div class="review-card" style="padding: 1.5rem;">
+        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+          <img src="https://randomuser.me/api/portraits/women/26.jpg" alt="Najuk" style="width: 60px; height: 60px; border-radius: 50%;">
+          <div>
+            <h3>Nazuk</h3>
+            <div class="star-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+          </div>
+        </div>
+        <p>"Great food and quick service but parking is slightly limited. However the taste makes up for it! Best chicken chilly in Barbigha."</p>
+        <div style="margin-top: 1rem; font-size: 0.875rem; color: #6B7280;">
+          Food: 5/5 | Service: 4/5 | Atmosphere: 4/5
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Masala Junction</h3>
+          <p>Best hangout food spot in Barbigha</p>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <a href="menu.html">Menu</a>
+          <a href="book-table.html">Book a Table</a>
+          <a href="order.html">Order Online</a>
+        </div>
+        <div class="footer-section">
+          <h3>Opening Hours</h3>
+          <p>11:00 AM - 10:30 PM</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Masala Junction. All rights reserved. | Developed by <a href="https://vyomarc.com" target="_blank" rel="noopener noreferrer">VYOMARC Technologies</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="sticky-bottom-bar">
+    <a href="tel:+919123456789" class="call-btn call-track"><i class="fas fa-phone-alt"></i><span>Call</span></a>
+    <a href="https://wa.me/919123456789" target="_blank" class="whatsapp-btn whatsapp-track"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a>
+    <a href="https://maps.google.com/?q=Masala+Junction+Barbigha" target="_blank" class="directions-btn direction-track"><i class="fas fa-location-dot"></i><span>Directions</span></a>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

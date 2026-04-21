@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Book a Table - Masala Junction</title>
+  <meta name="description" content="Best hangout food spot in Barbigha. Enjoy Chicken Lollipop, Paneer Chilli & more. Rated 4.2★. Call now for delivery or table booking!">
+  <meta name="keywords" content="best restaurant in Barbigha, chicken starter Barbigha, Masala Junction, hangout spot">
+  
+  <!-- Favicon - Replace the href with your logo path -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="assets/favicon/site.webmanifest">
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Additional navbar styling to match hero section */
+    .navbar {
+      background: linear-gradient(135deg, #DC2626, #1F2937) !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .logo {
+      font-family: 'Playfair Display', serif !important;
+      font-size: 1.8rem !important;
+      font-weight: 800 !important;
+      background: linear-gradient(135deg, #F59E0B, #FBBF24) !important;
+      -webkit-background-clip: text !important;
+      background-clip: text !important;
+      color: transparent !important;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      letter-spacing: 1px;
+      position: relative;
+    }
+    
+    .logo::after {
+      content: '🍽️';
+      font-size: 1.2rem;
+      position: absolute;
+      top: -5px;
+      right: -25px;
+      opacity: 0.8;
+    }
+    
+    /* Restaurant type tagline under logo */
+    .restaurant-type {
+      display: flex;
+      gap: 0.5rem;
+      margin-left: 0.5rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #F59E0B;
+      letter-spacing: 1px;
+    }
+    
+    .restaurant-type span {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 0.2rem 0.5rem;
+      border-radius: 20px;
+      backdrop-filter: blur(5px);
+    }
+    
+    @media (max-width: 768px) {
+      .logo {
+        font-size: 1.3rem !important;
+      }
+      
+      .logo::after {
+        font-size: 0.9rem;
+        right: -20px;
+      }
+      
+      .restaurant-type {
+        display: none;
+      }
+    }
+    
+    /* Update nav links color for better contrast */
+    .nav-links a {
+      color: white !important;
+      font-weight: 600;
+    }
+    
+    .nav-links a:hover {
+      color: #F59E0B !important;
+    }
+    
+    .nav-links a.active {
+      color: #F59E0B !important;
+    }
+    
+    .nav-links a::after {
+      background: #F59E0B !important;
+    }
+    
+    /* Mobile menu background */
+    @media (max-width: 768px) {
+      .nav-links {
+        background: linear-gradient(135deg, #DC2626, #1F2937) !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div>
+        <a href="index.html" class="logo">Masala Junction</a>
+        <div class="restaurant-type">
+          <span>INDIAN</span>
+          <span>CHINESE</span>
+          <span>TANDOOR</span>
+        </div>
+      </div>
+      <button class="menu-toggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="book-table.html">Book a Table</a>
+        <a href="order.html">Order Online</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+
+  <div class="container" style="margin: 3rem auto; max-width: 600px;">
+    <h1 class="section-title" style="text-align: center;">Book Your Table</h1>
+    <p style="text-align: center; margin-bottom: 2rem;">Reserve your spot at Masala Junction. We'll confirm via WhatsApp!</p>
+    
+    <form id="bookingForm" style="background: white; padding: 2rem; border-radius: 24px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+      <div class="form-group">
+        <label for="name">Full Name *</label>
+        <input type="text" id="name" required placeholder="Enter your name">
+      </div>
+      
+      <div class="form-group">
+        <label for="phone">Phone Number *</label>
+        <input type="tel" id="phone" required placeholder="Enter WhatsApp number">
+      </div>
+      
+      <div class="form-group">
+        <label for="date">Date *</label>
+        <input type="date" id="date" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="time">Time *</label>
+        <select id="time" required>
+          <option value="">Select time</option>
+          <option value="11:00">11:00 AM</option>
+          <option value="12:00">12:00 PM</option>
+          <option value="13:00">1:00 PM</option>
+          <option value="14:00">2:00 PM</option>
+          <option value="15:00">3:00 PM</option>
+          <option value="16:00">4:00 PM</option>
+          <option value="17:00">5:00 PM</option>
+          <option value="18:00">6:00 PM</option>
+          <option value="19:00">7:00 PM</option>
+          <option value="20:00">8:00 PM</option>
+          <option value="21:00">9:00 PM</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="guests">Number of Guests *</label>
+        <select id="guests" required>
+          <option value="">Select guests</option>
+          <option value="1">1 Person</option>
+          <option value="2">2 People</option>
+          <option value="3">3 People</option>
+          <option value="4">4 People</option>
+          <option value="5">5 People</option>
+          <option value="6">6+ People</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="menuItem">Preferred Dish (Optional)</label>
+        <select id="menuItem">
+          <option value="">Select your favorite dish</option>
+          <option value="Chicken Lollipop">Chicken Lollipop</option>
+          <option value="Paneer Chilli">Paneer Chilli</option>
+          <option value="Honey Chilli Potato">Honey Chilli Potato</option>
+          <option value="Chicken Chilly">Chicken Chilly</option>
+          <option value="Veg Momo">Veg Momo</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="specialRequests">Special Requests (Optional)</label>
+        <textarea id="specialRequests" rows="3" placeholder="Any special occasion, dietary requirements, etc."></textarea>
+      </div>
+      
+      <button type="submit" class="btn btn-primary" style="width: 100%;">Confirm Booking via WhatsApp</button>
+    </form>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Masala Junction</h3>
+          <p>Best hangout food spot in Barbigha</p>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <a href="menu.html">Menu</a>
+          <a href="book-table.html">Book a Table</a>
+          <a href="order.html">Order Online</a>
+        </div>
+        <div class="footer-section">
+          <h3>Opening Hours</h3>
+          <p>11:00 AM - 10:30 PM</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Masala Junction. All rights reserved.  | Developed by <a href="https://vyomarc.com" target="_blank" rel="noopener noreferrer">VYOMARC Technologies</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="sticky-bottom-bar">
+    <a href="tel:+919123456789" class="call-btn call-track"><i class="fas fa-phone-alt"></i><span>Call</span></a>
+    <a href="https://wa.me/919123456789" target="_blank" class="whatsapp-btn whatsapp-track"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a>
+    <a href="https://maps.google.com/?q=Masala+Junction+Barbigha" target="_blank" class="directions-btn direction-track"><i class="fas fa-location-dot"></i><span>Directions</span></a>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/book-table.js"></script>
+</body>
+</html>

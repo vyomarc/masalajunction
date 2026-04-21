@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Online - Masala Junction</title>
+  <!-- Favicon - Replace the href with your logo path -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="assets/favicon/site.webmanifest">
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* Additional navbar styling to match hero section */
+    .navbar {
+      background: linear-gradient(135deg, #DC2626, #1F2937) !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .logo {
+      font-family: 'Playfair Display', serif !important;
+      font-size: 1.8rem !important;
+      font-weight: 800 !important;
+      background: linear-gradient(135deg, #F59E0B, #FBBF24) !important;
+      -webkit-background-clip: text !important;
+      background-clip: text !important;
+      color: transparent !important;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      letter-spacing: 1px;
+      position: relative;
+    }
+    
+    .logo::after {
+      content: '🍽️';
+      font-size: 1.2rem;
+      position: absolute;
+      top: -5px;
+      right: -25px;
+      opacity: 0.8;
+    }
+    
+    /* Restaurant type tagline under logo */
+    .restaurant-type {
+      display: flex;
+      gap: 0.5rem;
+      margin-left: 0.5rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #F59E0B;
+      letter-spacing: 1px;
+    }
+    
+    .restaurant-type span {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 0.2rem 0.5rem;
+      border-radius: 20px;
+      backdrop-filter: blur(5px);
+    }
+    
+    @media (max-width: 768px) {
+      .logo {
+        font-size: 1.3rem !important;
+      }
+      
+      .logo::after {
+        font-size: 0.9rem;
+        right: -20px;
+      }
+      
+      .restaurant-type {
+        display: none;
+      }
+    }
+    
+    /* Update nav links color for better contrast */
+    .nav-links a {
+      color: white !important;
+      font-weight: 600;
+    }
+    
+    .nav-links a:hover {
+      color: #F59E0B !important;
+    }
+    
+    .nav-links a.active {
+      color: #F59E0B !important;
+    }
+    
+    .nav-links a::after {
+      background: #F59E0B !important;
+    }
+    
+    /* Mobile menu background */
+    @media (max-width: 768px) {
+      .nav-links {
+        background: linear-gradient(135deg, #DC2626, #1F2937) !important;
+      }
+    }
+
+    /* Additional styles for dynamic items */
+    .order-item {
+      background: #f9f9f9;
+      border-radius: 16px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      position: relative;
+      border: 2px solid #f0f0f0;
+      transition: all 0.3s ease;
+    }
+    
+    .order-item:hover {
+      border-color: #DC2626;
+      box-shadow: 0 2px 8px rgba(220, 38, 38, 0.1);
+    }
+    
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .item-title {
+      font-weight: bold;
+      color: #DC2626;
+    }
+    
+    .remove-item {
+      background: #fee2e2;
+      color: #DC2626;
+      border: none;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .remove-item:hover {
+      background: #DC2626;
+      color: white;
+      transform: scale(1.1);
+    }
+    
+    .item-controls {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    
+    .item-select {
+      flex: 2;
+      min-width: 180px;
+      padding: 0.5rem;
+      border: 2px solid #e5e7eb;
+      border-radius: 12px;
+      font-size: 0.9rem;
+    }
+    
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: white;
+      padding: 0.25rem;
+      border-radius: 12px;
+      border: 2px solid #e5e7eb;
+    }
+    
+    .quantity-btn {
+      width: 32px;
+      height: 32px;
+      border: none;
+      background: #f3f4f6;
+      cursor: pointer;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: all 0.2s;
+    }
+    
+    .quantity-btn:hover {
+      background: #DC2626;
+      color: white;
+    }
+    
+    .quantity-input {
+      width: 50px;
+      text-align: center;
+      border: none;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+    
+    .item-price {
+      font-weight: bold;
+      color: #DC2626;
+      min-width: 80px;
+      text-align: right;
+    }
+    
+    .add-item-btn {
+      background: #DC2626;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 1rem;
+      width: 100%;
+      transition: all 0.2s;
+    }
+    
+    .add-item-btn:hover {
+      background: #B91C1C;
+      transform: translateY(-2px);
+    }
+    
+    .order-summary {
+      background: linear-gradient(135deg, #FEF3C7, #FEE2E2);
+      padding: 1.5rem;
+      border-radius: 16px;
+      margin-top: 1rem;
+    }
+    
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+    
+    .summary-total {
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: #DC2626;
+      margin-top: 0.5rem;
+      padding-top: 0.5rem;
+      border-top: 2px solid #DC2626;
+    }
+    
+    .empty-cart {
+      text-align: center;
+      padding: 2rem;
+      color: #9ca3af;
+    }
+    
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .order-item {
+      animation: slideIn 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <div>
+        <a href="index.html" class="logo">Masala Junction</a>
+        <div class="restaurant-type">
+          <span>INDIAN</span>
+          <span>CHINESE</span>
+          <span>TANDOOR</span>
+        </div>
+      </div>
+      <button class="menu-toggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="book-table.html">Book a Table</a>
+        <a href="order.html">Order Online</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container" style="margin: 3rem auto; max-width: 800px;">
+    <h1 class="section-title" style="text-align: center;">Order for Home Delivery</h1>
+    <p style="text-align: center; margin-bottom: 2rem;">Build your order by adding items with quantities. Multiple items allowed!</p>
+    
+    <form id="orderForm" style="background: white; padding: 2rem; border-radius: 24px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+      <div class="form-group">
+        <label for="name">Full Name *</label>
+        <input type="text" id="name" required placeholder="Enter your name">
+      </div>
+      
+      <div class="form-group">
+        <label for="phone">Phone Number *</label>
+        <input type="tel" id="phone" required placeholder="Enter WhatsApp number for confirmation">
+      </div>
+      
+      <div class="form-group">
+        <label for="address">Delivery Address *</label>
+        <textarea id="address" rows="3" required placeholder="Enter your full address"></textarea>
+      </div>
+      
+      <!-- Dynamic Order Items Section -->
+      <div class="form-group">
+        <label>Order Items *</label>
+        <div id="orderItemsContainer">
+          <!-- Items will be added here dynamically -->
+          <div class="empty-cart" id="emptyCartMessage">
+            <i class="fas fa-shopping-cart" style="font-size: 2rem; margin-bottom: 0.5rem; display: block;"></i>
+            No items added yet. Click below to add your favorite dishes!
+          </div>
+        </div>
+        
+        <button type="button" class="add-item-btn" id="addItemBtn">
+          <i class="fas fa-plus-circle"></i> Add Item
+        </button>
+      </div>
+      
+      <!-- Order Summary -->
+      <div class="order-summary" id="orderSummary" style="display: none;">
+        <h3 style="margin-bottom: 1rem;">Order Summary</h3>
+        <div id="summaryItems"></div>
+        <div class="summary-row summary-total">
+          <strong>Total Amount:</strong>
+          <strong id="grandTotal">₹0</strong>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="instructions">Special Instructions (Optional)</label>
+        <textarea id="instructions" rows="3" placeholder="Any special requests? Spice level, delivery instructions, etc."></textarea>
+      </div>
+      
+      <button type="submit" class="btn btn-primary" style="width: 100%;" id="submitOrderBtn" disabled>
+        <i class="fab fa-whatsapp"></i> Place Order via WhatsApp
+      </button>
+    </form>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Masala Junction</h3>
+          <p>Best hangout food spot in Barbigha</p>
+          <p><i class="fas fa-map-marker-alt"></i> Near Bharat Petroleum, Hatiya More, Barbigha</p>
+          <p><i class="fas fa-phone"></i> +91 91234 56789</p>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <a href="menu.html">Menu</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="book-table.html">Book a Table</a>
+          <a href="order.html">Order Online</a>
+          <a href="reviews.html">Reviews</a>
+        </div>
+        <div class="footer-section">
+          <h3>Opening Hours</h3>
+          <p>Monday - Sunday: 11:00 AM - 10:30 PM</p>
+          <p>All days open</p>
+          <div style="margin-top: 1rem;">
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-facebook" style="margin-left: 1rem;"></i>
+            <i class="fab fa-twitter" style="margin-left: 1rem;"></i>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Masala Junction. All rights reserved.  | Developed by <a href="https://vyomarc.com" target="_blank" rel="noopener noreferrer">VYOMARC Technologies</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="sticky-bottom-bar">
+    <a href="tel:+918252702699" class="call-btn call-track"><i class="fas fa-phone-alt"></i><span>Call</span></a>
+    <a href="https://wa.me/918252702699" target="_blank" class="whatsapp-btn whatsapp-track"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a>
+    <a href="https://maps.google.com/?q=Masala+Junction+Barbigha" target="_blank" class="directions-btn direction-track"><i class="fas fa-location-dot"></i><span>Directions</span></a>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Complete menu with all items
+    const menuItems = {
+      // Veg Starters
+      'veg-momo': { name: 'Veg Momo', price: 100, category: 'veg' },
+      'paneer-chilli': { name: 'Paneer Chilli', price: 225, category: 'veg' },
+      'paneer-schezwan': { name: 'Paneer Schezwan', price: 225, category: 'veg' },
+      'baby-corn': { name: 'Baby Corn', price: 225, category: 'veg' },
+      'mushroom-chilly': { name: 'Mushroom Chilly', price: 225, category: 'veg' },
+      'veg-manchurian': { name: 'Veg Manchurian', price: 200, category: 'veg' },
+      'honey-chilli-potato': { name: 'Honey Chilli Potato', price: 175, category: 'veg' },
+      'spring-roll': { name: 'Spring Roll', price: 175, category: 'veg' },
+      
+      // Chicken Starters
+      'chicken-lollipop': { name: 'Chicken Lollipop', price: 225, category: 'chicken' },
+      'crispy-chicken': { name: 'Crispy Chicken', price: 275, category: 'chicken' },
+      'chicken-chilly': { name: 'Chicken Chilly', price: 275, category: 'chicken' },
+      'chicken-salt-pepper': { name: 'Chicken Salt & Pepper', price: 325, category: 'chicken' },
+      'chicken-manchurian': { name: 'Chicken Manchurian', price: 275, category: 'chicken' }
+    };
+    
+    let orderItems = [];
+    let itemCounter = 0;
+    
+    // Function to add new item
+    function addNewItem(selectedValue = '', quantity = 1) {
+      const container = document.getElementById('orderItemsContainer');
+      const emptyMessage = document.getElementById('emptyCartMessage');
+      if (emptyMessage) emptyMessage.style.display = 'none';
+      
+      const itemId = `item_${itemCounter++}`;
+      const itemDiv = document.createElement('div');
+      itemDiv.className = 'order-item';
+      itemDiv.id = itemId;
+      
+      itemDiv.innerHTML = `
+        <div class="item-header">
+          <span class="item-title">Item ${orderItems.length + 1}</span>
+          <button type="button" class="remove-item" onclick="removeItem('${itemId}')">
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
+        <div class="item-controls">
+          <select class="item-select" onchange="updateItemPrice('${itemId}')">
+            <option value="">Select a dish</option>
+            <optgroup label="🥗 Veg Starters">
+              <option value="veg-momo" ${selectedValue === 'veg-momo' ? 'selected' : ''}>Veg Momo - ₹100</option>
+              <option value="paneer-chilli" ${selectedValue === 'paneer-chilli' ? 'selected' : ''}>Paneer Chilli - ₹225</option>
+              <option value="paneer-schezwan" ${selectedValue === 'paneer-schezwan' ? 'selected' : ''}>Paneer Schezwan - ₹225</option>
+              <option value="baby-corn" ${selectedValue === 'baby-corn' ? 'selected' : ''}>Baby Corn - ₹225</option>
+              <option value="mushroom-chilly" ${selectedValue === 'mushroom-chilly' ? 'selected' : ''}>Mushroom Chilly - ₹225</option>
+              <option value="veg-manchurian" ${selectedValue === 'veg-manchurian' ? 'selected' : ''}>Veg Manchurian - ₹200</option>
+              <option value="honey-chilli-potato" ${selectedValue === 'honey-chilli-potato' ? 'selected' : ''}>Honey Chilli Potato - ₹175</option>
+              <option value="spring-roll" ${selectedValue === 'spring-roll' ? 'selected' : ''}>Spring Roll - ₹175</option>
+            </optgroup>
+            <optgroup label="🍗 Chicken Starters">
+              <option value="chicken-lollipop" ${selectedValue === 'chicken-lollipop' ? 'selected' : ''}>Chicken Lollipop - ₹225</option>
+              <option value="crispy-chicken" ${selectedValue === 'crispy-chicken' ? 'selected' : ''}>Crispy Chicken - ₹275</option>
+              <option value="chicken-chilly" ${selectedValue === 'chicken-chilly' ? 'selected' : ''}>Chicken Chilly - ₹275</option>
+              <option value="chicken-salt-pepper" ${selectedValue === 'chicken-salt-pepper' ? 'selected' : ''}>Chicken Salt & Pepper - ₹325</option>
+              <option value="chicken-manchurian" ${selectedValue === 'chicken-manchurian' ? 'selected' : ''}>Chicken Manchurian - ₹275</option>
+            </optgroup>
+          </select>
+          <div class="quantity-control">
+            <button type="button" class="quantity-btn" onclick="updateQuantity('${itemId}', -1)">-</button>
+            <input type="number" class="quantity-input" id="${itemId}_qty" value="${quantity}" min="1" onchange="updateItemPrice('${itemId}')">
+            <button type="button" class="quantity-btn" onclick="updateQuantity('${itemId}', 1)">+</button>
+          </div>
+          <div class="item-price" id="${itemId}_price">₹0</div>
+        </div>
+      `;
+      
+      container.appendChild(itemDiv);
+      
+      // Store item data
+      orderItems.push({
+        id: itemId,
+        itemKey: selectedValue,
+        quantity: quantity
+      });
+      
+      if (selectedValue) {
+        updateItemPrice(itemId);
+      }
+      
+      updateOrderSummary();
+      updateSubmitButton();
+    }
+    
+    // Function to remove item
+    function removeItem(itemId) {
+      const itemIndex = orderItems.findIndex(item => item.id === itemId);
+      if (itemIndex !== -1) {
+        orderItems.splice(itemIndex, 1);
+        const itemElement = document.getElementById(itemId);
+        if (itemElement) itemElement.remove();
+        
+        // Update item titles
+        const items = document.querySelectorAll('.order-item');
+        items.forEach((item, idx) => {
+          const title = item.querySelector('.item-title');
+          if (title) title.textContent = `Item ${idx + 1}`;
+        });
+        
+        if (orderItems.length === 0) {
+          const emptyMessage = document.getElementById('emptyCartMessage');
+          if (emptyMessage) emptyMessage.style.display = 'block';
+          document.getElementById('orderSummary').style.display = 'none';
+        }
+        
+        updateOrderSummary();
+        updateSubmitButton();
+      }
+    }
+    
+    // Function to update quantity
+    function updateQuantity(itemId, change) {
+      const qtyInput = document.getElementById(`${itemId}_qty`);
+      if (qtyInput) {
+        let newQty = parseInt(qtyInput.value) + change;
+        if (newQty < 1) newQty = 1;
+        qtyInput.value = newQty;
+        
+        const item = orderItems.find(i => i.id === itemId);
+        if (item) {
+          item.quantity = newQty;
+          updateItemPrice(itemId);
+        }
+      }
+    }
+    
+    // Function to update item price
+    function updateItemPrice(itemId) {
+      const select = document.querySelector(`#${itemId} .item-select`);
+      const qtyInput = document.getElementById(`${itemId}_qty`);
+      const priceDisplay = document.getElementById(`${itemId}_price`);
+      
+      if (select && qtyInput && priceDisplay) {
+        const selectedValue = select.value;
+        const quantity = parseInt(qtyInput.value) || 1;
+        
+        const item = orderItems.find(i => i.id === itemId);
+        if (item) {
+          item.itemKey = selectedValue;
+          item.quantity = quantity;
+        }
+        
+        if (selectedValue && menuItems[selectedValue]) {
+          const totalPrice = menuItems[selectedValue].price * quantity;
+          priceDisplay.textContent = `₹${totalPrice}`;
+        } else {
+          priceDisplay.textContent = `₹0`;
+        }
+        
+        updateOrderSummary();
+      }
+    }
+    
+    // Function to update order summary
+    function updateOrderSummary() {
+      const summaryDiv = document.getElementById('summaryItems');
+      const grandTotalSpan = document.getElementById('grandTotal');
+      const orderSummary = document.getElementById('orderSummary');
+      
+      let grandTotal = 0;
+      let summaryHTML = '';
+      let hasValidItems = false;
+      
+      orderItems.forEach((item, index) => {
+        const select = document.querySelector(`#${item.id} .item-select`);
+        const qtyInput = document.getElementById(`${item.id}_qty`);
+        
+        if (select && select.value && menuItems[select.value]) {
+          hasValidItems = true;
+          const menuItem = menuItems[select.value];
+          const quantity = parseInt(qtyInput?.value) || 1;
+          const itemTotal = menuItem.price * quantity;
+          grandTotal += itemTotal;
+          
+          summaryHTML += `
+            <div class="summary-row">
+              <span>${index + 1}. ${menuItem.name} x ${quantity}</span>
+              <span>₹${itemTotal}</span>
+            </div>
+          `;
+        }
+      });
+      
+      if (hasValidItems && grandTotal > 0) {
+        orderSummary.style.display = 'block';
+        summaryDiv.innerHTML = summaryHTML;
+        grandTotalSpan.textContent = `₹${grandTotal}`;
+      } else {
+        orderSummary.style.display = 'none';
+      }
+    }
+    
+    // Function to update submit button state
+    function updateSubmitButton() {
+      const submitBtn = document.getElementById('submitOrderBtn');
+      const name = document.getElementById('name')?.value;
+      const phone = document.getElementById('phone')?.value;
+      const address = document.getElementById('address')?.value;
+      
+      let hasValidItems = false;
+      orderItems.forEach(item => {
+        const select = document.querySelector(`#${item.id} .item-select`);
+        if (select && select.value && menuItems[select.value]) {
+          hasValidItems = true;
+        }
+      });
+      
+      if (name && phone && address && hasValidItems) {
+        submitBtn.disabled = false;
+      } else {
+        submitBtn.disabled = true;
+      }
+    }
+    
+    // Form submission
+    document.getElementById('orderForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const address = document.getElementById('address').value;
+      const instructions = document.getElementById('instructions').value;
+      
+      // Build order items list
+      let orderDetails = '';
+      let grandTotal = 0;
+      
+      orderItems.forEach((item, index) => {
+        const select = document.querySelector(`#${item.id} .item-select`);
+        const qtyInput = document.getElementById(`${item.id}_qty`);
+        
+        if (select && select.value && menuItems[select.value]) {
+          const menuItem = menuItems[select.value];
+          const quantity = parseInt(qtyInput?.value) || 1;
+          const itemTotal = menuItem.price * quantity;
+          grandTotal += itemTotal;
+          orderDetails += `${index + 1}. ${menuItem.name} x ${quantity} = ₹${itemTotal}\n`;
+        }
+      });
+      
+      // Format WhatsApp message
+      const message = `*NEW ORDER - MASALA JUNCTION*%0A%0A` +
+        `*Customer Details:*%0A` +
+        `Name: ${name}%0A` +
+        `Phone: ${phone}%0A` +
+        `Delivery Address: ${address}%0A%0A` +
+        `*Order Items:*%0A${orderDetails}%0A` +
+        `*Total Amount: ₹${grandTotal}*%0A%0A` +
+        `*Special Instructions:* ${instructions || 'None'}%0A%0A` +
+        `*Please confirm my order. Thank you!*`;
+      
+      // WhatsApp number (replace with actual restaurant number)
+      const whatsappNumber = '918252702699';
+      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
+      
+      // Track order event
+      if (window.MasalaJunction) {
+        window.MasalaJunction.trackEvent('order_submit', 'delivery_order');
+      }
+      
+      // Open WhatsApp
+      window.open(whatsappUrl, '_blank');
+      
+      // Show success message
+      if (window.MasalaJunction) {
+        window.MasalaJunction.showNotification('Order placed! Redirecting to WhatsApp...', 'success');
+      } else {
+        alert('Order placed! Redirecting to WhatsApp...');
+      }
+      
+      // Optional: Reset form after 3 seconds
+      setTimeout(() => {
+        // Clear all items
+        while(orderItems.length > 0) {
+          removeItem(orderItems[0].id);
+        }
+        document.getElementById('orderForm').reset();
+        updateSubmitButton();
+      }, 2000);
+    });
+    
+    // Add initial empty item
+    document.getElementById('addItemBtn').addEventListener('click', () => {
+      addNewItem();
+    });
+    
+    // Add one default item to start with
+    addNewItem();
+    
+    // Real-time validation for form fields
+    document.getElementById('name').addEventListener('input', updateSubmitButton);
+    document.getElementById('phone').addEventListener('input', updateSubmitButton);
+    document.getElementById('address').addEventListener('input', updateSubmitButton);
+  </script>
+</body>
+</html>
